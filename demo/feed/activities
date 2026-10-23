@@ -4,120 +4,308 @@
   "url": "https://participa.huelgaporlavivienda.org/activities",
   "inLanguage": "es",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "dateModified": "2026-10-20T10:00:00+00:00",
+  "dateModified": "2026-10-22T18:00:00+00:00",
   "dataFeedElement": [
     {
       "@type": "Event",
-      "@id": "https://participa.huelgaporlavivienda.org/activities/a1111111-1111-4111-8111-111111111111",
-      "url": "https://participa.huelgaporlavivienda.org/activities/a1111111-1111-4111-8111-111111111111",
-      "name": "Asamblea de barrio",
-      "description": "Nos vemos en la plaza para preparar la huelga.",
-      "startDate": "2026-10-24T19:00:00+02:00",
-      "endDate": "2026-10-24T21:00:00+02:00",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/d0000001-0000-4000-8000-000000000001",
+      "url": "https://participa.huelgaporlavivienda.org/activities/d0000001-0000-4000-8000-000000000001",
+      "name": "Asamblea de barrio para preparar la huelga",
+      "description": "Ponemos en común cómo va la campaña en el barrio y repartimos tareas para el 11 de noviembre.",
+      "startDate": "2026-10-29T19:00:00+01:00",
+      "endDate": "2026-10-29T21:00:00+01:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "additionalProperty": { "@type": "PropertyValue", "propertyID": "viability", "value": "confirmed" },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "propertyID": "viability",
+        "value": "confirmed"
+      },
       "location": {
         "@type": "Place",
-        "name": "Plaza Mayor",
-        "address": { "@type": "PostalAddress", "addressCountry": "ES", "addressLocality": "Madrid", "addressRegion": "Madrid" },
-        "geo": { "@type": "GeoCoordinates", "latitude": 40.4155, "longitude": -3.7074 }
+        "name": "Centro social del barrio",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Madrid",
+          "addressRegion": "Madrid"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.4089,
+          "longitude": -3.6997
+        }
       },
       "keywords": "Asamblea de huelga",
-      "maximumAttendeeCapacity": 40,
-      "remainingAttendeeCapacity": 28,
-      "superEvent": { "@type": "EventSeries", "@id": "urn:uuid:5e000000-0000-4000-8000-000000000001" },
-      "organizer": [{ "@type": "Organization", "name": "Comité de Ejemplo" }, { "@type": "Organization", "name": "Comité Vecino" }],
-      "potentialAction": { "@type": "JoinAction", "target": "https://participa.huelgaporlavivienda.org/activities/a1111111-1111-4111-8111-111111111111" }
+      "superEvent": {
+        "@type": "EventSeries",
+        "@id": "urn:uuid:5e000000-0000-4000-8000-000000000001"
+      },
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Ejemplo Centro"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/d0000001-0000-4000-8000-000000000001"
+      }
     },
     {
       "@type": "Event",
-      "@id": "https://participa.huelgaporlavivienda.org/activities/a2222222-2222-4222-8222-222222222222",
-      "url": "https://participa.huelgaporlavivienda.org/activities/a2222222-2222-4222-8222-222222222222",
-      "name": "Reparto de carteles",
-      "startDate": "2026-10-24T18:00:00+01:00",
-      "endDate": "2026-10-24T20:00:00+01:00",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/d0000002-0000-4000-8000-000000000002",
+      "url": "https://participa.huelgaporlavivienda.org/activities/d0000002-0000-4000-8000-000000000002",
+      "name": "Asamblea de barrio para preparar la huelga",
+      "startDate": "2026-11-05T19:00:00+01:00",
+      "endDate": "2026-11-05T21:00:00+01:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "additionalProperty": { "@type": "PropertyValue", "propertyID": "viability", "value": "pending" },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "propertyID": "viability",
+        "value": "pending"
+      },
       "location": {
         "@type": "Place",
-        "name": "Mercado del Puerto",
-        "address": { "@type": "PostalAddress", "addressCountry": "ES", "addressLocality": "Santa Cruz de Tenerife", "addressRegion": "Santa Cruz de Tenerife" },
-        "geo": { "@type": "GeoCoordinates", "latitude": 28.4636, "longitude": -16.2518 }
+        "name": "Centro social del barrio",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Madrid",
+          "addressRegion": "Madrid"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.4089,
+          "longitude": -3.6997
+        }
       },
-      "keywords": "Difusión",
-      "maximumAttendeeCapacity": 10,
-      "remainingAttendeeCapacity": 0,
-      "potentialAction": { "@type": "JoinAction", "target": "https://participa.huelgaporlavivienda.org/activities/a2222222-2222-4222-8222-222222222222" }
+      "keywords": "Asamblea de huelga",
+      "superEvent": {
+        "@type": "EventSeries",
+        "@id": "urn:uuid:5e000000-0000-4000-8000-000000000001"
+      },
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Ejemplo Centro"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/d0000002-0000-4000-8000-000000000002"
+      }
     },
     {
       "@type": "Event",
-      "@id": "https://participa.huelgaporlavivienda.org/activities/a3333333-3333-4333-8333-333333333333",
-      "url": "https://participa.huelgaporlavivienda.org/activities/a3333333-3333-4333-8333-333333333333",
-      "name": "Asamblea de barrio",
-      "description": "Nos vemos en la plaza para preparar la huelga.",
-      "startDate": "2026-10-31T19:00:00+01:00",
-      "endDate": "2026-10-31T21:00:00+01:00",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/d0000003-0000-4000-8000-000000000003",
+      "url": "https://participa.huelgaporlavivienda.org/activities/d0000003-0000-4000-8000-000000000003",
+      "name": "Reparto de octavillas en el mercado",
+      "description": "Trae calzado cómodo: recorremos los puestos y la plaza.",
+      "startDate": "2026-10-31T11:00:00+01:00",
+      "endDate": "2026-10-31T13:00:00+01:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "propertyID": "viability",
+        "value": "pending"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Mercado municipal",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Getafe",
+          "addressRegion": "Madrid"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.3083,
+          "longitude": -3.7327
+        }
+      },
+      "keywords": "Difusión",
+      "maximumAttendeeCapacity": 12,
+      "remainingAttendeeCapacity": 4,
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Ejemplo Sur"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/d0000003-0000-4000-8000-000000000003"
+      }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/d0000004-0000-4000-8000-000000000004",
+      "url": "https://participa.huelgaporlavivienda.org/activities/d0000004-0000-4000-8000-000000000004",
+      "name": "Encuesta puerta a puerta",
+      "startDate": "2026-11-01T10:30:00+00:00",
+      "endDate": "2026-11-01T13:30:00+00:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "propertyID": "viability",
+        "value": "confirmed"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Plaza del ayuntamiento",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Las Palmas de Gran Canaria",
+          "addressRegion": "Las Palmas"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 28.1235,
+          "longitude": -15.4363
+        }
+      },
+      "keywords": "Encuesta",
+      "maximumAttendeeCapacity": 8,
+      "remainingAttendeeCapacity": 0,
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Ejemplo Gran Canaria"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/d0000004-0000-4000-8000-000000000004"
+      }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/d0000005-0000-4000-8000-000000000005",
+      "url": "https://participa.huelgaporlavivienda.org/activities/d0000005-0000-4000-8000-000000000005",
+      "name": "Formación: cómo organizar tu bloque",
+      "startDate": "2026-11-03T18:30:00+01:00",
+      "endDate": "2026-11-03T20:00:00+01:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "propertyID": "viability",
+        "value": "confirmed"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Biblioteca pública",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Alcalá de Henares",
+          "addressRegion": "Madrid"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.4818,
+          "longitude": -3.3643
+        }
+      },
+      "keywords": "Formación",
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Ejemplo Este"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/d0000005-0000-4000-8000-000000000005"
+      }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/d0000006-0000-4000-8000-000000000006",
+      "url": "https://participa.huelgaporlavivienda.org/activities/d0000006-0000-4000-8000-000000000006",
+      "name": "Pegada de carteles",
+      "startDate": "2026-11-04T20:00:00+01:00",
+      "endDate": "2026-11-04T22:00:00+01:00",
       "eventStatus": "https://schema.org/EventCancelled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
         "@type": "Place",
-        "name": "Plaza Mayor",
-        "address": { "@type": "PostalAddress", "addressCountry": "ES", "addressLocality": "Madrid", "addressRegion": "Madrid" },
-        "geo": { "@type": "GeoCoordinates", "latitude": 40.4155, "longitude": -3.7074 }
+        "name": "Salida desde la estación",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Leganés",
+          "addressRegion": "Madrid"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.3272,
+          "longitude": -3.7635
+        }
       },
-      "keywords": "Asamblea de huelga",
-      "maximumAttendeeCapacity": 40,
-      "remainingAttendeeCapacity": 40,
-      "superEvent": { "@type": "EventSeries", "@id": "urn:uuid:5e000000-0000-4000-8000-000000000001" },
-      "organizer": [{ "@type": "Organization", "name": "Comité de Ejemplo" }],
-      "potentialAction": { "@type": "JoinAction", "target": "https://participa.huelgaporlavivienda.org/activities/a3333333-3333-4333-8333-333333333333" }
-    },
-    {
-      "@type": "Event",
-      "@id": "https://participa.huelgaporlavivienda.org/activities/a4444444-4444-4444-8444-444444444444",
-      "url": "https://participa.huelgaporlavivienda.org/activities/a4444444-4444-4444-8444-444444444444",
-      "name": "Asamblea de barrio",
-      "description": "Nos vemos en la plaza para preparar la huelga.",
-      "startDate": "2026-11-07T19:00:00+01:00",
-      "endDate": "2026-11-07T21:00:00+01:00",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "additionalProperty": { "@type": "PropertyValue", "propertyID": "viability", "value": "pending" },
-      "location": {
-        "@type": "Place",
-        "name": "Plaza Mayor",
-        "address": { "@type": "PostalAddress", "addressCountry": "ES", "addressLocality": "Madrid", "addressRegion": "Madrid" },
-        "geo": { "@type": "GeoCoordinates", "latitude": 40.4155, "longitude": -3.7074 }
-      },
-      "keywords": "Asamblea de huelga",
-      "maximumAttendeeCapacity": 40,
-      "remainingAttendeeCapacity": 35,
-      "superEvent": { "@type": "EventSeries", "@id": "urn:uuid:5e000000-0000-4000-8000-000000000001" },
-      "organizer": [{ "@type": "Organization", "name": "Comité de Ejemplo" }],
-      "potentialAction": { "@type": "JoinAction", "target": "https://participa.huelgaporlavivienda.org/activities/a4444444-4444-4444-8444-444444444444" }
-    },
-    {
-      "@type": "Event",
-      "@id": "https://participa.huelgaporlavivienda.org/activities/a5555555-5555-4555-8555-555555555555",
-      "url": "https://participa.huelgaporlavivienda.org/activities/a5555555-5555-4555-8555-555555555555",
-      "name": "<script>alert('x')</script> Charla",
-      "startDate": "2026-11-11T18:00:00+00:00",
-      "endDate": "2026-11-11T19:30:00+00:00",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "additionalProperty": [
-        { "@type": "PropertyValue", "propertyID": "somethingNew", "value": "ignored" },
-        { "@type": "PropertyValue", "propertyID": "viability", "value": "confirmed" }
+      "keywords": "Difusión",
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Ejemplo Sur"
+        }
       ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/d0000006-0000-4000-8000-000000000006"
+      }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/d0000007-0000-4000-8000-000000000007",
+      "url": "https://participa.huelgaporlavivienda.org/activities/d0000007-0000-4000-8000-000000000007",
+      "name": "Manifestación por la vivienda",
+      "description": "Salimos todas juntas el día de la huelga.",
+      "startDate": "2026-11-11T12:00:00+01:00",
+      "endDate": "2026-11-11T14:00:00+01:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "propertyID": "viability",
+        "value": "confirmed"
+      },
       "location": {
         "@type": "Place",
-        "address": { "@type": "PostalAddress", "addressCountry": "ES", "addressRegion": "Las Palmas" }
+        "name": "Plaza de la Ciudad",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Madrid",
+          "addressRegion": "Madrid"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.4168,
+          "longitude": -3.7038
+        }
       },
-      "keywords": "Otros",
-      "aFieldFromTheFuture": { "anything": true },
-      "potentialAction": { "@type": "JoinAction", "target": "https://participa.huelgaporlavivienda.org/activities/a5555555-5555-4555-8555-555555555555" }
+      "keywords": "Movilización",
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Ejemplo Centro"
+        },
+        {
+          "@type": "Organization",
+          "name": "Comité de Ejemplo Sur"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/d0000007-0000-4000-8000-000000000007"
+      }
     }
   ]
 }
