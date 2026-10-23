@@ -6,6 +6,8 @@ El feed da en un formato estándar ([JSON-LD](https://json-ld.org/) con el vocab
 
 Este repositorio tiene un widget para pegar en tu web, la documentación para quien la lleva, ejemplos y librerías.
 
+Todo esto también está publicado en [inquilab-madrid.github.io/gestor-de-eventos-feed](https://inquilab-madrid.github.io/gestor-de-eventos-feed/), con una [demostración del widget](https://inquilab-madrid.github.io/gestor-de-eventos-feed/demo/).
+
 ## Empieza en cinco minutos
 
 1. **Prueba el feed** desde tu terminal:
