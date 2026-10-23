@@ -1,0 +1,19 @@
+{
+  "name": "actividades-toka",
+  "version": "0.1.0",
+  "description": "Widget <actividades-toka> para mostrar las actividades de la campaña por la Huelga General por la Vivienda en cualquier web.",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vite build && node scripts/check-size.mjs && node scripts/check-docs.mjs && playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.4"
+  }
+}

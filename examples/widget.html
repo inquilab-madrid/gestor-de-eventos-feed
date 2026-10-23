@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Widget de actividades</title>
+  <!-- Optional: adjust the look to your site. -->
+  <style>
+    actividades-toka { --toka-accent: #b3261e; max-width: 40rem; }
+  </style>
+</head>
+<body>
+  <h2>Actividades en la provincia de Madrid</h2>
+  <actividades-toka client="fc_TU_IDENTIFICADOR" province="28" limit="5"></actividades-toka>
+
+  <h2>Activitats a Barcelona</h2>
+  <!-- One municipality, in Catalan. -->
+  <actividades-toka client="fc_TU_IDENTIFICADOR" municipality="Barcelona" lang="ca" limit="5"></actividades-toka>
+
+  <!--
+    On your site, load it from jsDelivr with the version and integrity hash given in docs/widget.md:
+    <script src="https://cdn.jsdelivr.net/gh/inquilab-madrid/gestor-de-eventos-feed@widget-vX.Y.Z/packages/widget/dist/actividades-toka.js"
+            integrity="sha384-…" crossorigin="anonymous" defer></script>
+    Here, to try it from this repository, it loads the local build (serve the repository root, for example with `npx serve`).
+  -->
+  <script src="../packages/widget/dist/actividades-toka.js" defer></script>
+</body>
+</html>
