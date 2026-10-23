@@ -9,7 +9,6 @@
 
 declare(strict_types=1);
 
-use InquilabMadrid\ActivityFeed\Activity;
 use InquilabMadrid\ActivityFeed\FeedClient;
 use InquilabMadrid\ActivityFeed\FeedException;
 use InquilabMadrid\ActivityFeed\Format;
@@ -65,26 +64,32 @@ final class Activity_Feed_WordPress_Transport implements HttpTransport
     }
 }
 
-/** @return array{client: string, province: string} */
+/** @return array{client: string, province: string, municipality: string} */
 function activity_feed_settings(): array
 {
     $settings = get_option(ACTIVITY_FEED_SETTINGS, []);
-    return [
-        'client' => is_array($settings) && is_string($settings['client'] ?? null) ? $settings['client'] : '',
-        'province' => is_array($settings) && is_string($settings['province'] ?? null) ? $settings['province'] : '',
-    ];
+    $text = static fn (string $key): string => is_array($settings) && is_string($settings[$key] ?? null) ? $settings[$key] : '';
+    return ['client' => $text('client'), 'province' => $text('province'), 'municipality' => $text('municipality')];
+}
+
+/** The area the site shows: one province (INE code) or one municipality, as the feed takes one of each. */
+function activity_feed_area(array $settings): array
+{
+    return $settings['province'] !== '' ? ['province' => $settings['province']]
+        : ($settings['municipality'] !== '' ? ['municipality' => $settings['municipality']] : []);
 }
 
 function activity_feed_poller(): ?Poller
 {
     $settings = activity_feed_settings();
-    if ($settings['client'] === '') {
+    $area = activity_feed_area($settings);
+    if ($settings['client'] === '' || $area === []) {
         return null;
     }
     // Identify the site, so the campaign can reach it if something goes wrong.
     $userAgent = sprintf('%s/1.0 (+%s)', sanitize_title(get_bloginfo('name')) ?: 'wordpress', home_url('/'));
     $feed = new FeedClient($settings['client'], new Activity_Feed_WordPress_Transport(), userAgent: $userAgent);
-    return new Poller($feed, new WordPressOptionCache(ACTIVITY_FEED_STATE), array_filter(['province' => $settings['province']]));
+    return new Poller($feed, new WordPressOptionCache(ACTIVITY_FEED_STATE), $area);
 }
 
 // Refresh every five minutes with WP-Cron. Pages only read the kept copy: visits never call the feed.
@@ -112,6 +117,7 @@ add_action('admin_init', static function (): void {
             $previous = activity_feed_settings();
             $client = is_array($input) ? trim((string) ($input['client'] ?? '')) : '';
             $province = is_array($input) ? trim((string) ($input['province'] ?? '')) : '';
+            $municipality = is_array($input) ? sanitize_text_field((string) ($input['municipality'] ?? '')) : '';
             if ($client !== '' && preg_match('/^fc_[0-9A-Za-z]{22}$/', $client) !== 1) {
                 add_settings_error(ACTIVITY_FEED_SETTINGS, 'client', 'El identificador de cliente tiene la forma fc_ seguido de 22 letras y números.');
                 $client = $previous['client'];
@@ -120,7 +126,11 @@ add_action('admin_init', static function (): void {
                 add_settings_error(ACTIVITY_FEED_SETTINGS, 'province', 'La provincia es su código INE de dos cifras, por ejemplo 28 para Madrid.');
                 $province = $previous['province'];
             }
-            return ['client' => $client, 'province' => $province];
+            if (($province === '') === ($municipality === '')) {
+                add_settings_error(ACTIVITY_FEED_SETTINGS, 'area', 'Indica tu provincia o tu municipio: uno de los dos.');
+                [$province, $municipality] = [$previous['province'], $previous['municipality']];
+            }
+            return ['client' => $client, 'province' => $province, 'municipality' => $municipality];
         },
     ]);
 });
@@ -136,7 +146,7 @@ add_action('admin_menu', static function (): void {
         ?>
         <div class="wrap">
             <h1>Actividades de la huelga</h1>
-            <p>Muestra las actividades en cualquier página con el shortcode <code>[actividades_huelga]</code>. Opciones: <code>limit="10"</code>, <code>municipality="Getafe"</code>.</p>
+            <p>Muestra las actividades en cualquier página con el shortcode <code>[actividades_huelga]</code>. Muestra las de tu provincia o las de tu municipio. Opción: <code>limit="10"</code>.</p>
             <form method="post" action="options.php">
                 <?php settings_fields('activity_feed'); ?>
                 <table class="form-table" role="presentation">
@@ -147,7 +157,12 @@ add_action('admin_menu', static function (): void {
                     <tr>
                         <th scope="row"><label for="activity-feed-province">Provincia</label></th>
                         <td><input id="activity-feed-province" class="small-text" name="<?php echo esc_attr(ACTIVITY_FEED_SETTINGS); ?>[province]" value="<?php echo esc_attr($settings['province']); ?>" placeholder="28">
-                            <p class="description">Código INE de dos cifras. Vacío: toda España.</p></td>
+                            <p class="description">Código INE de dos cifras, por ejemplo 28 para Madrid.</p></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="activity-feed-municipality">O municipio</label></th>
+                        <td><input id="activity-feed-municipality" class="regular-text" name="<?php echo esc_attr(ACTIVITY_FEED_SETTINGS); ?>[municipality]" value="<?php echo esc_attr($settings['municipality']); ?>" placeholder="Getafe">
+                            <p class="description">Su nombre; da igual con o sin tildes. Rellena la provincia o el municipio, no los dos.</p></td>
                     </tr>
                 </table>
                 <?php submit_button(); ?>
@@ -160,17 +175,11 @@ add_action('admin_menu', static function (): void {
     });
 });
 
-/** Lower case and without accents, as the feed compares municipalities. */
-function activity_feed_plain(string $text): string
-{
-    return strtolower(remove_accents(trim($text)));
-}
-
 add_shortcode('actividades_huelga', static function ($atts): string {
-    $atts = shortcode_atts(['limit' => '10', 'municipality' => ''], is_array($atts) ? $atts : [], 'actividades_huelga');
+    $atts = shortcode_atts(['limit' => '10'], is_array($atts) ? $atts : [], 'actividades_huelga');
     $poller = activity_feed_poller();
     if ($poller === null) {
-        return current_user_can('manage_options') ? '<p>' . esc_html('Configura el identificador de cliente en Ajustes → Actividades de la huelga.') . '</p>' : '';
+        return current_user_can('manage_options') ? '<p>' . esc_html('Configura el identificador de cliente y tu provincia o municipio en Ajustes → Actividades de la huelga.') . '</p>' : '';
     }
     // The first time there is no copy yet: fetch it once; from then on, WP-Cron keeps it fresh.
     $snapshot = $poller->current() ?? $poller->refresh()->snapshot;
@@ -178,12 +187,7 @@ add_shortcode('actividades_huelga', static function ($atts): string {
         return '<p>' . esc_html('No se han podido cargar las actividades.') . '</p>';
     }
 
-    $activities = $snapshot->activities;
-    if ($atts['municipality'] !== '') {
-        $wanted = activity_feed_plain((string) $atts['municipality']);
-        $activities = array_values(array_filter($activities, static fn (Activity $a) => activity_feed_plain($a->place->municipality ?? '') === $wanted));
-    }
-    $entries = array_slice(Series::group($activities), 0, max(1, (int) $atts['limit']));
+    $entries = array_slice(Series::group($snapshot->activities), 0, max(1, (int) $atts['limit']));
 
     // Every text from the feed is escaped: it is written by campaign volunteers, never trusted as HTML.
     $html = '<div class="actividades-huelga">';

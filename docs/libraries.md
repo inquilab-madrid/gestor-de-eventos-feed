@@ -112,7 +112,7 @@ Cualquier respuesta que no sea `200` o `304` lanza un `FeedError` con `status`, 
 
 En [`packages/php`](../packages/php). PHP 8.2 o posterior, sin dependencias: no necesita curl ni otros paquetes. Con la extensión `intl`, `Format::when()` escribe las fechas en cualquier idioma; sin ella, en castellano.
 
-¿Usas WordPress? Hay un [plugin de ejemplo](../examples/wordpress/activity-feed-shortcode) con un shortcode listo para usar.
+¿Usas WordPress? Hay un [plugin de ejemplo](../examples/wordpress/activity-feed-shortcode) con un shortcode listo para usar: eliges tu provincia o tu municipio en sus ajustes.
 
 ### Instalarla
 
@@ -130,7 +130,7 @@ Desde cron, refresca la copia; en tus páginas, muestra la copia. Así las visit
 use InquilabMadrid\ActivityFeed\{FeedClient, FileCache, Format, Poller};
 
 $feed = new FeedClient('fc_TU_IDENTIFICADOR', userAgent: 'NombreDeTuColectivo/1.0 (+https://tu-web.org/contacto)');
-$poller = new Poller($feed, new FileCache(__DIR__ . '/actividades.json'), ['province' => '28']);
+$poller = new Poller($feed, new FileCache(__DIR__ . '/actividades.json'), ['province' => '28']); // o ['municipality' => 'Getafe']
 
 // En el script de cron (cada minuto o cada pocos minutos):
 $result = $poller->refresh();
@@ -152,7 +152,7 @@ foreach ($poller->current()?->activities ?? [] as $activity) {
 
 Si muchas webs ejecutan cron en el mismo minuto, pasa `jitterSeconds: 20` a `Poller` para no preguntar justo en el segundo `:00`.
 
-Para consultas sueltas, sin copia: `$feed->list(['province' => '28'])` y `$feed->get($id)` devuelven un `FeedResult` con `activities`, `etag`, `age` y `dateModified` (o `notModified` si le pasas el `etag` de tu copia).
+Para consultas sueltas, sin copia: `$feed->list(['province' => '28'])` (o `['municipality' => 'Getafe']`) y `$feed->get($id)` devuelven un `FeedResult` con `activities`, `etag`, `age` y `dateModified` (o `notModified` si le pasas el `etag` de tu copia).
 
 ### Qué devuelve y ayudas
 
