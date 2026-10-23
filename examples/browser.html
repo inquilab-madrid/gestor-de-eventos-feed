@@ -8,15 +8,19 @@
        connect-src 'self' https://participa.huelgaporlavivienda.org -->
 </head>
 <body>
-  <h2>Actividades de la huelga</h2>
+  <h2>Actividades de la huelga en tu zona</h2>
   <p id="feed-status">Cargando actividades…</p>
   <ul id="feed-list"></ul>
   <p><small>Actividades: <a href="https://participa.huelgaporlavivienda.org/activities">Huelga General por la Vivienda</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>.</small></p>
 
   <script>
-    // Your client id and filters. The client id only works from the addresses of your site you registered.
+    // Your client id: it only works from the addresses of your site you registered.
     const client = "fc_TU_IDENTIFICADOR";
-    const params = new URLSearchParams({ client, province: "28" });
+    // The activities of one province, by its two-digit INE code (28 is Madrid)…
+    const area = { province: "28" };
+    // …or of one municipality, by its name:
+    // const area = { municipality: "Getafe" };
+    const params = new URLSearchParams({ client, ...area });
     const feedUrl = `https://participa.huelgaporlavivienda.org/api/public/v1/activities?${params}`;
 
     const list = document.getElementById("feed-list");
