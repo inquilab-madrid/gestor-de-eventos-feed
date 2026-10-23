@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Actividades de la huelga</title>
+  <!-- If your site has a Content-Security-Policy, add the feed's domain to connect-src:
+       connect-src 'self' https://participa.huelgaporlavivienda.org -->
+</head>
+<body>
+  <h2>Actividades de la huelga</h2>
+  <p id="feed-status">Cargando actividades…</p>
+  <ul id="feed-list"></ul>
+  <p><small>Actividades: <a href="https://participa.huelgaporlavivienda.org/activities">Huelga General por la Vivienda</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>.</small></p>
+
+  <script>
+    // Your client id and filters. The client id only works from the addresses of your site you registered.
+    const client = "fc_TU_IDENTIFICADOR";
+    const params = new URLSearchParams({ client, province: "28" });
+    const feedUrl = `https://participa.huelgaporlavivienda.org/api/public/v1/activities?${params}`;
+
+    const list = document.getElementById("feed-list");
+    const status = document.getElementById("feed-status");
+
+    // How the campaign names each state.
+    const stateLabel = (event) => event.eventStatus.endsWith("/EventCancelled") ? "Cancelada"
+      : event.additionalProperty?.value === "confirmed" ? "Confirmada" : "Falta gente";
+
+    // The place's local time: Canary activities are an hour behind.
+    const canary = (event) => ["Las Palmas", "Santa Cruz de Tenerife"].includes(event.location?.address?.addressRegion);
+    const when = (event) => new Intl.DateTimeFormat("es", {
+      weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit",
+      timeZone: canary(event) ? "Atlantic/Canary" : "Europe/Madrid",
+    }).format(new Date(event.startDate)) + (canary(event) ? " (hora canaria)" : "");
+
+    // Never innerHTML: titles and descriptions are written by campaign volunteers. textContent shows them as
+    // text, so nobody can slip code into your page through an activity.
+    function render(events) {
+      list.replaceChildren(...events.map((event) => {
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = event.url;
+        link.textContent = event.name;
+        const details = document.createElement("div");
+        const place = [event.location?.name, event.location?.address?.addressLocality].filter(Boolean).join(", ");
+        details.textContent = `${when(event)} · ${place} · ${stateLabel(event)}`;
+        if (event.eventStatus.endsWith("/EventCancelled")) item.style.textDecoration = "line-through";
+        item.append(link, details);
+        return item;
+      }));
+      status.textContent = events.length ? "" : "No hay actividades próximas.";
+    }
+
+    // One request per page load: never in a loop.
+    fetch(feedUrl)
+      .then(async (response) => {
+        if (!response.ok) {
+          const problem = await response.json().catch(() => null);
+          throw new Error(problem?.title ?? `El feed respondió ${response.status}.`);
+        }
+        return response.json();
+      })
+      .then((feed) => render(feed.dataFeedElement))
+      .catch((error) => {
+        // A 403 (address not registered, or a page opened as file://) reaches here as a network error.
+        status.textContent = "No se han podido cargar las actividades.";
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
