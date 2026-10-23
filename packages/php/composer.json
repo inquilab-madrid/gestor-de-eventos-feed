@@ -1,0 +1,25 @@
+{
+    "name": "inquilab-madrid/activity-feed",
+    "description": "Cliente del feed público de actividades de la campaña por la Huelga General por la Vivienda.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.1",
+        "ext-json": "*"
+    },
+    "suggest": {
+        "ext-intl": "Fechas en cualquier idioma con Format::when(); sin ella, en castellano."
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": { "InquilabMadrid\\ActivityFeed\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "InquilabMadrid\\ActivityFeed\\Tests\\": "tests/" }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
