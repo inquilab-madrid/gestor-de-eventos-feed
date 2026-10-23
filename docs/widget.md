@@ -2,7 +2,7 @@
 
 La forma más sencilla de mostrar las actividades de tu provincia o de tu municipio en tu web: pegas dos líneas y ya está. Funciona en cualquier web que te deje añadir HTML (WordPress, Wix, Squarespace, una web hecha a mano…), sin servidor propio.
 
-El widget se adapta a tu web: usa su tipo de letra y sus colores. Habla castellano, català, euskara y galego.
+El widget se adapta a tu web: usa su tipo de letra y sus colores. Habla castellano, català, euskara y galego. Míralo funcionando en la [demostración](https://inquilab-madrid.github.io/gestor-de-eventos-feed/demo/).
 
 ## Pegarlo
 

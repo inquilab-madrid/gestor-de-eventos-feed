@@ -1,0 +1,13 @@
+# GitHub Pages: the Markdown docs become pages, examples and the widget build are copied as they are.
+title: Feed público de actividades
+description: Las actividades de la Huelga General por la Vivienda en tu web. Widget, API, librerías y ejemplos.
+lang: es
+theme: jekyll-theme-primer
+exclude:
+  - AGENTS.md
+  - packages/js/test
+  - packages/php/tests
+  - packages/widget/test
+  - packages/widget/scripts
+  - "*.lock"
+  - "package-lock.json"
