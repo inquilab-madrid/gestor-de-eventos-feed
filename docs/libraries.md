@@ -107,3 +107,78 @@ Cada actividad es un objeto así:
 ### Errores
 
 Cualquier respuesta que no sea `200` o `304` lanza un `FeedError` con `status`, `title` (el mensaje del feed, en castellano) y `retryAfter` (los segundos que pide esperar, si los pide). Si el feed no responde, `status` es `0`. Qué hacer con cada código está en la [referencia de la API](api.md#códigos).
+
+## PHP
+
+En [`packages/php`](../packages/php). PHP 8.2 o posterior, sin dependencias: no necesita curl ni otros paquetes. Con la extensión `intl`, `Format::when()` escribe las fechas en cualquier idioma; sin ella, en castellano.
+
+¿Usas WordPress? Hay un [plugin de ejemplo](../examples/wordpress/activity-feed-shortcode) con un shortcode listo para usar.
+
+### Instalarla
+
+Hasta que esté en Packagist, copia `packages/php/src` a tu proyecto y regístrala en tu autoload de Composer:
+
+```json
+{ "autoload": { "psr-4": { "InquilabMadrid\\ActivityFeed\\": "lib/activity-feed/" } } }
+```
+
+### Uso
+
+Desde cron, refresca la copia; en tus páginas, muestra la copia. Así las visitas nunca llaman al feed.
+
+```php
+use InquilabMadrid\ActivityFeed\{FeedClient, FileCache, Format, Poller};
+
+$feed = new FeedClient('fc_TU_IDENTIFICADOR', userAgent: 'NombreDeTuColectivo/1.0 (+https://tu-web.org/contacto)');
+$poller = new Poller($feed, new FileCache(__DIR__ . '/actividades.json'), ['province' => '28']);
+
+// En el script de cron (cada minuto o cada pocos minutos):
+$result = $poller->refresh();
+if ($result->error !== null) {
+    error_log($result->error->title);
+}
+
+// Al pintar la página:
+foreach ($poller->current()?->activities ?? [] as $activity) {
+    printf(
+        '<li><a href="%s">%s</a> · %s · %s</li>',
+        htmlspecialchars($activity->url, ENT_QUOTES),
+        htmlspecialchars($activity->name, ENT_QUOTES),   // texto, nunca HTML sin escapar
+        htmlspecialchars(Format::when($activity), ENT_QUOTES),
+        htmlspecialchars(Format::statusLabel($activity), ENT_QUOTES),
+    );
+}
+```
+
+Si muchas webs ejecutan cron en el mismo minuto, pasa `jitterSeconds: 20` a `Poller` para no preguntar justo en el segundo `:00`.
+
+Para consultas sueltas, sin copia: `$feed->list(['province' => '28'])` y `$feed->get($id)` devuelven un `FeedResult` con `activities`, `etag`, `age` y `dateModified` (o `notModified` si le pasas el `etag` de tu copia).
+
+### Qué devuelve y ayudas
+
+Cada actividad es un objeto `Activity` con los mismos campos que en JavaScript (ver la tabla de arriba): `$activity->place->municipality`, `$activity->capacity?->remaining`, `$activity->raw`…
+
+| Método | Qué hace |
+| --- | --- |
+| `Format::statusLabel($activity)` | «Falta gente», «Confirmada» o «Cancelada». |
+| `Format::when($activity, 'es')` | Día y hora en la hora del lugar, con «(hora canaria)» si toca. |
+| `Format::localTime($activity)` | Sólo la hora de inicio, `HH:MM`. |
+| `Series::group($activities)` | Una entrada por serie: `['activity' => …, 'otherDates' => n]`. |
+
+### Dónde guardar la copia
+
+| Clase | Para |
+| --- | --- |
+| `FileCache($ruta)` | Un archivo JSON, con escritura atómica. |
+| `WordPressOptionCache()` | Una opción de WordPress (no un *transient*, que puede desaparecer). |
+| `MemoryCache()` | Pruebas, o procesos que están siempre en marcha. |
+
+O implementa `Cache` (`read()` y `write()`) para guardarla en tu base de datos.
+
+### Tu propio cliente HTTP
+
+Por defecto usa los *streams* de PHP. Para usar Guzzle, Symfony HttpClient o `wp_remote_get`, implementa `HttpTransport` (un método `get()`) y pásalo a `FeedClient`. El plugin de WordPress tiene un ejemplo.
+
+### Errores
+
+Cualquier respuesta que no sea `200` o `304` lanza un `FeedException` con `status`, `title` y `retryAfter`, igual que en JavaScript. `Poller::refresh()` no lanza: devuelve el error en `$result->error` y conserva la copia.

@@ -3,7 +3,7 @@
  * Plugin Name: Actividades de la huelga
  * Description: Muestra las actividades de la campaña por la Huelga General por la Vivienda con el shortcode [actividades_huelga].
  * Version: 0.1.0
- * Requires PHP: 8.1
+ * Requires PHP: 8.2
  * License: MIT
  */
 
@@ -198,7 +198,7 @@ add_shortcode('actividades_huelga', static function ($atts): string {
                 . ' · ' . esc_html(Format::when($activity))
                 . ($place !== '' ? ' · ' . esc_html($place) : '')
                 . ' · <strong>' . esc_html(Format::statusLabel($activity)) . '</strong>'
-                . ($otherDates > 0 ? ' · ' . esc_html(sprintf('y %d fechas más', $otherDates)) : '')
+                . ($otherDates > 0 ? ' · ' . esc_html($otherDates === 1 ? 'y 1 fecha más' : sprintf('y %d fechas más', $otherDates)) : '')
                 . '</li>';
         }
         $html .= '</ul>';

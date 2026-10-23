@@ -26,7 +26,7 @@ Este repositorio es la documentación para quien lleva la web, el código de los
 - [Referencia de la API](docs/api.md): rutas, filtros, identificación, cabeceras, errores y límites.
 - [Formato de los datos](docs/data-format.md): qué trae cada actividad y cómo leerla.
 - [Buenas prácticas](docs/good-practices.md): consultar sin sobrecargar, mostrar sin abrir agujeros de seguridad, qué hacer cuando algo falla.
-- [Librerías](docs/libraries.md): JavaScript/TypeScript (navegador y Node.js), para no leer el JSON-LD a mano.
+- [Librerías](docs/libraries.md): JavaScript/TypeScript (navegador y Node.js) y PHP, con un [plugin de WordPress](examples/wordpress/activity-feed-shortcode) de ejemplo.
 
 ## Licencia
 
