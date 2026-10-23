@@ -1,5 +1,5 @@
 import type { Activity } from "../../js/src/model.js";
-import { dateLocale, type Lang, texts } from "./i18n.js";
+import { formatDate, type Lang, texts } from "./i18n.js";
 
 // Builds the list with createElement and textContent only: titles, places and names come from campaign
 // volunteers and are always text, never HTML.
@@ -33,9 +33,7 @@ function safeLink(href: string, text: string, part?: string): HTMLElement {
 }
 
 function when(activity: Activity, lang: Lang): string {
-  const formatted = new Intl.DateTimeFormat(dateLocale(lang), {
-    timeZone: activity.timeZone, weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit", hourCycle: "h23",
-  }).format(new Date(activity.start));
+  const formatted = formatDate(activity.start, activity.timeZone, lang);
   return activity.timeZone === "Atlantic/Canary" ? `${formatted} (${texts[lang].canaryTime.toLowerCase()})` : formatted;
 }
 

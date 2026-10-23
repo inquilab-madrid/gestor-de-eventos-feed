@@ -81,7 +81,34 @@ export function chooseLang(element: Element): Lang {
   return isLang(inherited) ? inherited : "es";
 }
 
-/** The locale for dates: the chosen language if this browser can format it, Spanish otherwise. */
-export function dateLocale(lang: Lang): string {
-  return Intl.DateTimeFormat.supportedLocalesOf([lang]).length ? lang : "es";
+// Dates with our own names: many browsers cannot format Basque or Galician and would fall back to Spanish.
+const weekdays: Record<Lang, string[]> = {
+  es: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
+  ca: ["diumenge", "dilluns", "dimarts", "dimecres", "dijous", "divendres", "dissabte"],
+  eu: ["igandea", "astelehena", "asteartea", "asteazkena", "osteguna", "ostirala", "larunbata"],
+  gl: ["domingo", "luns", "martes", "mércores", "xoves", "venres", "sábado"],
+};
+const months: Record<Lang, string[]> = {
+  es: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
+  ca: ["gener", "febrer", "març", "abril", "maig", "juny", "juliol", "agost", "setembre", "octubre", "novembre", "desembre"],
+  eu: ["urtarrila", "otsaila", "martxoa", "apirila", "maiatza", "ekaina", "uztaila", "abuztua", "iraila", "urria", "azaroa", "abendua"],
+  gl: ["xaneiro", "febreiro", "marzo", "abril", "maio", "xuño", "xullo", "agosto", "setembro", "outubro", "novembro", "decembro"],
+};
+const englishWeekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+/** «jueves, 29 de octubre, 19:00» in the given language, in the given time zone. */
+export function formatDate(iso: string, timeZone: string, lang: Lang): string {
+  // English is in every browser: use it only to read the parts of the date in that time zone.
+  const parts = Object.fromEntries(new Intl.DateTimeFormat("en-US", {
+    timeZone, weekday: "short", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+  }).formatToParts(new Date(iso)).map(({ type, value }) => [type, value]));
+  const weekday = weekdays[lang][englishWeekdays.indexOf(parts.weekday)];
+  const month = months[lang][Number(parts.month) - 1];
+  const day = Number(parts.day);
+  const time = `${parts.hour}:${parts.minute}`;
+  switch (lang) {
+    case "ca": return `${weekday}, ${day} ${/^[aeiou]/.test(month) ? "d’" : "de "}${month}, a les ${time}`;
+    case "eu": return `${weekday}, ${month.replace(/a$/, "aren")} ${day}a, ${time}`;
+    default: return `${weekday}, ${day} de ${month}, ${time}`;
+  }
 }

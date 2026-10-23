@@ -11,7 +11,7 @@ El widget se adapta a tu web: usa su tipo de letra y sus colores. Habla castella
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/inquilab-madrid/gestor-de-eventos-feed@widget-v0.1.0/packages/widget/dist/actividades-toka.js"
-        integrity="sha384-TKBe+wTCY7OTrkWSX4vuIGwhskL00EAlH93ynrcPJvoLlwOkUDH6d4w5FAOAc1Rx"
+        integrity="sha384-jIE66Aqi0uNo3HaZsiTrWigElI3pyfklNqnprO+Gy8LWfhXm+YHHRnCVX2/SEHPM"
         crossorigin="anonymous" defer></script>
 <actividades-toka client="fc_TU_IDENTIFICADOR" province="28"></actividades-toka>
 ```
@@ -83,4 +83,4 @@ Si prefieres no cargarlo desde jsDelivr, descarga `packages/widget/dist/activida
 
 | Versión | `integrity` |
 | --- | --- |
-| `widget-v0.1.0` | `sha384-TKBe+wTCY7OTrkWSX4vuIGwhskL00EAlH93ynrcPJvoLlwOkUDH6d4w5FAOAc1Rx` |
+| `widget-v0.1.0` | `sha384-jIE66Aqi0uNo3HaZsiTrWigElI3pyfklNqnprO+Gy8LWfhXm+YHHRnCVX2/SEHPM` |

@@ -112,15 +112,17 @@ test("changing the area asks again, once", async ({ page }) => {
   expect(new URL(requests[1].url()).searchParams.get("municipality")).toBe("Getafe");
 });
 
-for (const [lang, state, canary, credit] of [
-  ["ca", "Falta gent", "(hora canària)", "Activitats: Vaga General per l’Habitatge, CC BY 4.0"],
-  ["eu", "Jendea falta da", "(kanarietako ordua)", "Jarduerak: Etxebizitzaren aldeko Greba Orokorra, CC BY 4.0"],
-  ["gl", "Falta xente", "(hora canaria)", "Actividades: Folga Xeral pola Vivenda, CC BY 4.0"],
+// Dates use the widget's own names: browsers often lack Basque or Galician and would answer in Spanish.
+for (const [lang, state, date, credit] of [
+  ["es", "Falta gente", "sábado, 24 de octubre, 18:00 (hora canaria)", "Actividades: Huelga General por la Vivienda, CC BY 4.0"],
+  ["ca", "Falta gent", "dissabte, 24 d’octubre, a les 18:00 (hora canària)", "Activitats: Vaga General per l’Habitatge, CC BY 4.0"],
+  ["eu", "Jendea falta da", "larunbata, urriaren 24a, 18:00 (kanarietako ordua)", "Jarduerak: Etxebizitzaren aldeko Greba Orokorra, CC BY 4.0"],
+  ["gl", "Falta xente", "sábado, 24 de outubro, 18:00 (hora canaria)", "Actividades: Folga Xeral pola Vivenda, CC BY 4.0"],
 ] as const) {
   test(`speaks ${lang} when the page does`, async ({ page }) => {
     await mount(page, `<actividades-toka client="fc_TU_IDENTIFICADOR" province="28"></actividades-toka>`, undefined, lang);
     await expect(items(page).nth(1)).toContainText(state);
-    await expect(items(page).nth(1)).toContainText(canary);
+    await expect(items(page).nth(1)).toContainText(date);
     await expect(page.locator("actividades-toka .credit")).toHaveText(credit);
   });
 }

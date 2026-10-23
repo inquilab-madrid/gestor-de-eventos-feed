@@ -1,0 +1,270 @@
+{
+  "@context": "https://schema.org",
+  "@type": "DataFeed",
+  "url": "https://participa.huelgaporlavivienda.org/activities",
+  "inLanguage": "es",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "dateModified": "2026-10-22T18:00:00+00:00",
+  "dataFeedElement": [
+    {
+      "@type": "Event",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/a0000001-0000-4000-8000-000000000001",
+      "url": "https://participa.huelgaporlavivienda.org/activities/a0000001-0000-4000-8000-000000000001",
+      "name": "Asemblea de barrio en Teis",
+      "description": "Poñemos en común como vai a campaña no barrio e repartimos tarefas para o 11 de novembro.",
+      "startDate": "2026-10-29T19:00:00+01:00",
+      "endDate": "2026-10-29T21:00:00+01:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "propertyID": "viability",
+        "value": "confirmed"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Praza de Teis",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Vigo",
+          "addressRegion": "Pontevedra"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 42.256,
+          "longitude": -8.693
+        }
+      },
+      "keywords": "Asamblea de huelga",
+      "superEvent": {
+        "@type": "EventSeries",
+        "@id": "urn:uuid:5e000000-0000-4000-8000-0000000000a1"
+      },
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Exemplo Teis"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/a0000001-0000-4000-8000-000000000001"
+      }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/a0000002-0000-4000-8000-000000000002",
+      "url": "https://participa.huelgaporlavivienda.org/activities/a0000002-0000-4000-8000-000000000002",
+      "name": "Asemblea de barrio en Teis",
+      "startDate": "2026-11-05T19:00:00+01:00",
+      "endDate": "2026-11-05T21:00:00+01:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "propertyID": "viability",
+        "value": "pending"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Praza de Teis",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Vigo",
+          "addressRegion": "Pontevedra"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 42.256,
+          "longitude": -8.693
+        }
+      },
+      "keywords": "Asamblea de huelga",
+      "superEvent": {
+        "@type": "EventSeries",
+        "@id": "urn:uuid:5e000000-0000-4000-8000-0000000000a1"
+      },
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Exemplo Teis"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/a0000002-0000-4000-8000-000000000002"
+      }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/a0000003-0000-4000-8000-000000000003",
+      "url": "https://participa.huelgaporlavivienda.org/activities/a0000003-0000-4000-8000-000000000003",
+      "name": "Reparto de follas no mercado do Calvario",
+      "description": "Percorremos os postos e a praza. Trae calzado cómodo.",
+      "startDate": "2026-10-31T11:00:00+01:00",
+      "endDate": "2026-10-31T13:00:00+01:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "propertyID": "viability",
+        "value": "pending"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Mercado do Calvario",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Vigo",
+          "addressRegion": "Pontevedra"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 42.2266,
+          "longitude": -8.7065
+        }
+      },
+      "keywords": "Difusión",
+      "maximumAttendeeCapacity": 12,
+      "remainingAttendeeCapacity": 4,
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Exemplo Calvario"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/a0000003-0000-4000-8000-000000000003"
+      }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/a0000004-0000-4000-8000-000000000004",
+      "url": "https://participa.huelgaporlavivienda.org/activities/a0000004-0000-4000-8000-000000000004",
+      "name": "Enquisa porta a porta no Casco Vello",
+      "startDate": "2026-11-01T10:30:00+01:00",
+      "endDate": "2026-11-01T13:30:00+01:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "propertyID": "viability",
+        "value": "confirmed"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Praza da Constitución",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Vigo",
+          "addressRegion": "Pontevedra"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 42.239,
+          "longitude": -8.7255
+        }
+      },
+      "keywords": "Encuesta",
+      "maximumAttendeeCapacity": 8,
+      "remainingAttendeeCapacity": 0,
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Exemplo Casco Vello"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/a0000004-0000-4000-8000-000000000004"
+      }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/a0000005-0000-4000-8000-000000000005",
+      "url": "https://participa.huelgaporlavivienda.org/activities/a0000005-0000-4000-8000-000000000005",
+      "name": "Pegada de carteis en Bouzas",
+      "startDate": "2026-11-04T20:00:00+01:00",
+      "endDate": "2026-11-04T22:00:00+01:00",
+      "eventStatus": "https://schema.org/EventCancelled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Saída desde o peirao",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Vigo",
+          "addressRegion": "Pontevedra"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 42.235,
+          "longitude": -8.7525
+        }
+      },
+      "keywords": "Difusión",
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Exemplo Casco Vello"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/a0000005-0000-4000-8000-000000000005"
+      }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://participa.huelgaporlavivienda.org/activities/a0000006-0000-4000-8000-000000000006",
+      "url": "https://participa.huelgaporlavivienda.org/activities/a0000006-0000-4000-8000-000000000006",
+      "name": "Manifestación pola vivenda",
+      "description": "Saímos xuntas o día da folga.",
+      "startDate": "2026-11-11T12:00:00+01:00",
+      "endDate": "2026-11-11T14:00:00+01:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "propertyID": "viability",
+        "value": "confirmed"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Porta do Sol",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES",
+          "addressLocality": "Vigo",
+          "addressRegion": "Pontevedra"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 42.2385,
+          "longitude": -8.7225
+        }
+      },
+      "keywords": "Movilización",
+      "organizer": [
+        {
+          "@type": "Organization",
+          "name": "Comité de Exemplo Teis"
+        },
+        {
+          "@type": "Organization",
+          "name": "Comité de Exemplo Calvario"
+        }
+      ],
+      "potentialAction": {
+        "@type": "JoinAction",
+        "target": "https://participa.huelgaporlavivienda.org/activities/a0000006-0000-4000-8000-000000000006"
+      }
+    }
+  ]
+}

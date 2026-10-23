@@ -21,32 +21,32 @@
 
   <div class="grid">
     <section>
-      <h2>Castellano</h2>
-      <actividades-toka client="fc_TU_IDENTIFICADOR" province="28" lang="es"></actividades-toka>
+      <h2>Castellano · Málaga</h2>
+      <actividades-toka client="fc_TU_IDENTIFICADOR" province="29" lang="es" data-feed="es"></actividades-toka>
     </section>
     <section>
-      <h2>Català</h2>
-      <actividades-toka client="fc_TU_IDENTIFICADOR" province="28" lang="ca"></actividades-toka>
+      <h2>Català · Barcelona</h2>
+      <actividades-toka client="fc_TU_IDENTIFICADOR" municipality="Barcelona" lang="ca" data-feed="ca"></actividades-toka>
     </section>
     <section>
-      <h2>Euskara</h2>
-      <actividades-toka client="fc_TU_IDENTIFICADOR" province="28" lang="eu"></actividades-toka>
+      <h2>Euskara · Bilbo</h2>
+      <actividades-toka client="fc_TU_IDENTIFICADOR" municipality="Bilbao" lang="eu" data-feed="eu"></actividades-toka>
     </section>
     <section>
-      <h2>Galego</h2>
-      <actividades-toka client="fc_TU_IDENTIFICADOR" province="28" lang="gl"></actividades-toka>
+      <h2>Galego · Vigo</h2>
+      <actividades-toka client="fc_TU_IDENTIFICADOR" municipality="Vigo" lang="gl" data-feed="gl"></actividades-toka>
     </section>
     <section class="themed">
       <h2>Con el estilo de tu web</h2>
       <p><code>--toka-accent: #b3261e</code>, letra Georgia heredada y <code>limit="2"</code>.</p>
-      <actividades-toka client="fc_TU_IDENTIFICADOR" province="28" limit="2" style="--toka-accent: #b3261e"></actividades-toka>
+      <actividades-toka client="fc_TU_IDENTIFICADOR" province="29" limit="2" data-feed="es" style="--toka-accent: #b3261e"></actividades-toka>
     </section>
   </div>
 
   <script>
-    // Demo only: the widgets read the sample data next to this page instead of the real feed.
+    // Demo only: each widget reads the sample data of its city, next to this page, instead of the real feed.
     for (const widget of document.querySelectorAll("actividades-toka")) {
-      widget.setAttribute("base-url", new URL("feed", location.href).href);
+      widget.setAttribute("base-url", new URL(`feeds/${widget.dataset.feed}`, location.href).href);
     }
   </script>
   <script src="../packages/widget/dist/actividades-toka.js" defer></script>
