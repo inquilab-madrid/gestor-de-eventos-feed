@@ -2,6 +2,8 @@
 
 Para no tener que leer el JSON-LD a mano, hay librerías que hacen el trabajo repetitivo: añadir tu identificador y los filtros, convertir cada actividad en un objeto sencillo, dar el estado con las palabras de la campaña, mostrar la hora del lugar y, desde tu servidor, guardar la última copia buena y esperar cuando el feed lo pide.
 
+Los ejemplos muestran las actividades de una provincia (por su código INE, `28` es Madrid) o de un municipio (por su nombre): el feed admite uno de cada por petición.
+
 Las librerías devuelven texto, nunca HTML. Muéstralo como texto: lee [Seguridad](good-practices.md#seguridad-muestra-los-textos-como-texto).
 
 Todavía no están publicadas en npm ni en Packagist. Mientras tanto, cópialas de este repositorio.
@@ -28,7 +30,7 @@ Y añádela a tu proyecto desde esa carpeta (`npm install ../ruta/a/packages/js`
 import { createFeedClient, formatWhen, statusLabel } from "@inquilab-madrid/activity-feed";
 
 const feed = createFeedClient({ client: "fc_TU_IDENTIFICADOR" });
-const { activities } = await feed.list({ province: "28" });
+const { activities } = await feed.list({ province: "28" }); // o { municipality: "Getafe" }
 
 const list = document.querySelector("#actividades");
 for (const activity of activities) {
@@ -56,7 +58,11 @@ const feed = createFeedClient({
   client: process.env.FEED_CLIENT,
   userAgent: "NombreDeTuColectivo/1.0 (+https://tu-web.org/contacto)",
 });
-const poller = createPoller({ feed, filters: { province: "28" }, storage: fileStorage("actividades.json") });
+const poller = createPoller({
+  feed,
+  filters: { province: "28" }, // o { municipality: "Getafe" }
+  storage: fileStorage("actividades.json"),
+});
 
 // En un servidor que está siempre en marcha: refresca ahora y cada minuto.
 poller.start((result) => { if (result.error) console.error(result.error.title); });

@@ -14,7 +14,7 @@ Este repositorio es la documentación para quien lleva la web, el código de los
    curl 'https://participa.huelgaporlavivienda.org/api/public/v1/activities?client=fc_TU_IDENTIFICADOR&province=28'
    ```
 
-   Recibes un `DataFeed` con las actividades próximas de Madrid. Sin identificador, la respuesta es `401`.
+   Recibes un `DataFeed` con las actividades próximas de la provincia de Madrid (código INE `28`). Para un municipio, usa su nombre: `&municipality=Getafe`. Sin identificador, la respuesta es `401`.
 2. **Elige cómo publicarlo:**
    - **Desde tu servidor** (WordPress u otro gestor de contenidos, o una web con mucho tráfico): tu servidor consulta el feed como mucho una vez por minuto, guarda una copia y la muestra. Ejemplo en [`examples/server.mjs`](examples/server.mjs).
    - **Desde el navegador** (una web sencilla sin servidor propio): un poco de JavaScript en tu página pide el feed y pinta la lista. Ejemplo en [`examples/browser.html`](examples/browser.html).

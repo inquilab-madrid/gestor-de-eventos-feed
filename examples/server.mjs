@@ -1,11 +1,12 @@
 // Reads the public activity feed from your server and keeps a local copy, the way the documentation asks:
 // at most once a minute, with your own User-Agent, only downloading changes (ETag) and respecting Retry-After.
 //
-// Run it from cron every minute, or every few minutes:
-//   * * * * *  FEED_CLIENT=fc_… node /path/to/server.mjs
+// Run it from cron every minute, or every few minutes, for your province (INE code) or your municipality:
+//   * * * * *  FEED_CLIENT=fc_… FEED_PROVINCE=28 node /path/to/server.mjs
+//   * * * * *  FEED_CLIENT=fc_… FEED_MUNICIPALITY=Getafe node /path/to/server.mjs
 // Then have your site read activities.json (the last good copy) instead of calling the feed on every visit.
 //
-// Node.js 18 or later, no dependencies.
+// Node.js 22 or later, no dependencies.
 
 import { readFile, writeFile, rename } from "node:fs/promises";
 
@@ -14,8 +15,11 @@ if (!client) throw new Error("Set FEED_CLIENT to your client id (fc_…).");
 
 const feedUrl = new URL(process.env.FEED_URL ?? "https://participa.huelgaporlavivienda.org/api/public/v1/activities");
 feedUrl.searchParams.set("client", client);
-// Your filters, for example only Madrid:
-if (process.env.FEED_PROVINCE) feedUrl.searchParams.set("province", process.env.FEED_PROVINCE);
+// The area your site shows: one province (two-digit INE code, 28 is Madrid) or one municipality.
+const area = process.env.FEED_PROVINCE ? ["province", process.env.FEED_PROVINCE]
+  : process.env.FEED_MUNICIPALITY ? ["municipality", process.env.FEED_MUNICIPALITY] : null;
+if (!area) throw new Error("Set FEED_PROVINCE (for example 28) or FEED_MUNICIPALITY (for example Getafe).");
+feedUrl.searchParams.set(...area);
 
 // Identify yourself, so the campaign can reach you if something goes wrong.
 const userAgent = process.env.FEED_USER_AGENT ?? "NombreDeTuColectivo/1.0 (+https://tu-web.org/contacto)";
