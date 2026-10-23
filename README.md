@@ -4,7 +4,7 @@ Las actividades de la campaña por la Huelga General por la Vivienda, listas par
 
 El feed da en un formato estándar ([JSON-LD](https://json-ld.org/) con el vocabulario [schema.org `Event`](https://schema.org/Event)) lo mismo que cualquiera ve sin cuenta en [participa.huelgaporlavivienda.org/activities](https://participa.huelgaporlavivienda.org/activities): actividades próximas, dónde, cuándo, si falta gente o están confirmadas, y el enlace para apuntarse. Cuando una actividad cambia o se cancela, el feed lo refleja en un minuto como mucho.
 
-Este repositorio es la documentación para quien lleva la web y el código de los ejemplos. El widget para pegar en una web llegará aquí también.
+Este repositorio es la documentación para quien lleva la web, el código de los ejemplos y librerías para usarlo. El widget para pegar en una web llegará aquí también.
 
 ## Empieza en cinco minutos
 
@@ -26,6 +26,7 @@ Este repositorio es la documentación para quien lleva la web y el código de lo
 - [Referencia de la API](docs/api.md): rutas, filtros, identificación, cabeceras, errores y límites.
 - [Formato de los datos](docs/data-format.md): qué trae cada actividad y cómo leerla.
 - [Buenas prácticas](docs/good-practices.md): consultar sin sobrecargar, mostrar sin abrir agujeros de seguridad, qué hacer cuando algo falla.
+- [Librerías](docs/libraries.md): JavaScript/TypeScript (navegador y Node.js), para no leer el JSON-LD a mano.
 
 ## Licencia
 
