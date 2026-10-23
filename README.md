@@ -4,7 +4,7 @@ Las actividades de la campaña por la Huelga General por la Vivienda, listas par
 
 El feed da en un formato estándar ([JSON-LD](https://json-ld.org/) con el vocabulario [schema.org `Event`](https://schema.org/Event)) lo mismo que cualquiera ve sin cuenta en [participa.huelgaporlavivienda.org/activities](https://participa.huelgaporlavivienda.org/activities): actividades próximas, dónde, cuándo, si falta gente o están confirmadas, y el enlace para apuntarse. Cuando una actividad cambia o se cancela, el feed lo refleja en un minuto como mucho.
 
-Este repositorio es la documentación para quien lleva la web, el código de los ejemplos y librerías para usarlo. El widget para pegar en una web llegará aquí también.
+Este repositorio tiene un widget para pegar en tu web, la documentación para quien la lleva, ejemplos y librerías.
 
 ## Empieza en cinco minutos
 
@@ -16,6 +16,7 @@ Este repositorio es la documentación para quien lleva la web, el código de los
 
    Recibes un `DataFeed` con las actividades próximas de la provincia de Madrid (código INE `28`). Para un municipio, usa su nombre: `&municipality=Getafe`. Sin identificador, la respuesta es `401`.
 2. **Elige cómo publicarlo:**
+   - **Con el widget** (cualquier web, sin programar): pegas dos líneas y aparece la lista de tu provincia o tu municipio. Ver [el widget](docs/widget.md).
    - **Desde tu servidor** (WordPress u otro gestor de contenidos, o una web con mucho tráfico): tu servidor consulta el feed como mucho una vez por minuto, guarda una copia y la muestra. Ejemplo en [`examples/server.mjs`](examples/server.mjs).
    - **Desde el navegador** (una web sencilla sin servidor propio): un poco de JavaScript en tu página pide el feed y pinta la lista. Ejemplo en [`examples/browser.html`](examples/browser.html).
 
@@ -26,6 +27,7 @@ Este repositorio es la documentación para quien lleva la web, el código de los
 - [Referencia de la API](docs/api.md): rutas, filtros, identificación, cabeceras, errores y límites.
 - [Formato de los datos](docs/data-format.md): qué trae cada actividad y cómo leerla.
 - [Buenas prácticas](docs/good-practices.md): consultar sin sobrecargar, mostrar sin abrir agujeros de seguridad, qué hacer cuando algo falla.
+- [Widget](docs/widget.md): `<actividades-toka>`, para pegar en cualquier web, en castellano, català, euskara y galego.
 - [Librerías](docs/libraries.md): JavaScript/TypeScript (navegador y Node.js) y PHP, con un [plugin de WordPress](examples/wordpress/activity-feed-shortcode) de ejemplo.
 
 ## Licencia

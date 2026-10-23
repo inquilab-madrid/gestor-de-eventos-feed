@@ -48,3 +48,28 @@ jobs:
       - run: composer install --no-interaction --no-progress
       - run: vendor/bin/phpunit
       - run: php -l ../../examples/wordpress/activity-feed-shortcode/activity-feed-shortcode.php
+
+  widget:
+    name: Widget
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/widget
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+      - run: npm ci --ignore-scripts
+      - run: npx tsc -p tsconfig.json
+      - run: npx vite build
+      - name: dist matches the sources
+        run: git diff --exit-code -- dist
+      - run: node scripts/check-size.mjs
+      - run: node scripts/check-docs.mjs
+      - name: Integrity hash for the snippet
+        run: echo "SRI \`sha384-$(openssl dgst -sha384 -binary dist/actividades-toka.js | openssl base64 -A)\`" >> "$GITHUB_STEP_SUMMARY"
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test
