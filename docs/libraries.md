@@ -8,7 +8,7 @@ Todavía no están publicadas en npm ni en Packagist. Mientras tanto, cópialas 
 
 ## JavaScript y TypeScript
 
-En [`packages/js`](../packages/js). Sin dependencias. Funciona en el navegador y en Node.js 20 o posterior, y trae sus tipos de TypeScript.
+En [`packages/js`](../packages/js). Sin dependencias. Funciona en el navegador y en Node.js 22 o posterior, y trae sus tipos de TypeScript.
 
 ### Instalarla
 
